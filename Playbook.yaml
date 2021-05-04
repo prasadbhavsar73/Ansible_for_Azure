@@ -228,7 +228,7 @@
     - name: "Log Analytics Workspace"
       azure_rm_loganalyticsworkspace:
         subscription_id: 
-        resource_group: rg-datahub-prod
+        resource_group: 
         location: 
         name: log-datahubb-prod
         sku: standard
@@ -245,7 +245,7 @@
   hosts: localhost
   connection: local
   vars:
-    resource_group_webapp: rg-datahub-dev
+    resource_group_webapp: 
     resource_group: 
     webapp_name: dhwbap
     plan_name: dhservpln
