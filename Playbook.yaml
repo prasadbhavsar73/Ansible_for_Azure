@@ -5,18 +5,18 @@
   tasks:
      - name: "Start-up Resource Group"
        azure_rm_resourcegroup:
-         name: ApexDH-Comp1
-         location: eastus
+         name: 
+         location: 
          state: present
      - name: "Production Resource Group"
        azure_rm_resourcegroup:
-         name: rg-apexdatahub-prod-001
-         location: eastus2
+         name: 
+         location: 
          state: present
      - name: "Development Resource Group"
        azure_rm_resourcegroup:
-         name: rg-apexdatahub-dev-001
-         location: eastus2
+         name: 
+         location: 
          state: present
 
 - name: "Deployement of Reservoir Configurations"
@@ -25,68 +25,68 @@
   tasks:
      - name: "Production SQL Server"
        azure_rm_sqlserver:
-         subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-         resource_group: ApexDH-Comp1
-         name: apexdatahub-prod
-         location: eastus
+         subscription_id: 
+         resource_group: 
+         name: 
+         location: 
          admin_username: azure-user
-         admin_password: apex@123
+         admin_password: 
          version: 12.0
          state: present
          tags:
            tags:
-            Env : Prod
+            Env : 
      - name: "Production SQL Server Firewall Rule"
        azure_rm_sqlfirewallrule:
-         resource_group: ApexDH-Comp1
-         server_name: apexdatahub-prod
-         name: firewallrulecrud-5370
-         start_ip_address: 0.0.0.0
-         end_ip_address: 0.0.0.0
+         resource_group: 
+         server_name: datahub-prod
+         name: 
+         start_ip_address: IPADDR
+         end_ip_address: IPADDR
      - name: "Production SQL Database"
        azure_rm_sqldatabase:
-         subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-         resource_group: ApexDH-Comp1
-         location: eastus
+         subscription_id: 
+         resource_group: 
+         location: 
          name: reservoir-prod
-         server_name: apexdatahub-prod
+         server_name: datahub-prod
          force_update: yes
          state: present
          zone_redundant: no
          tags:
-            Env: Prod
+            Env: 
 
      - name: "Development SQL Server"
        azure_rm_sqlserver:
-         subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-         resource_group: rg-apexdatahub-dev-001
-         name: apexdatahubdev
-         location: eastus2
+         subscription_id: 
+         resource_group: 
+         name: datahubdev
+         location: 
          admin_username: azure-user
-         admin_password: apex@123
+         admin_password: 
          version: 12.0
          state: present
          tags:
-            Env : Prod
+            Env : 
      - name: "Development SQL Server Firewall Rule"
        azure_rm_sqlfirewallrule:
-         resource_group: rg-apexdatahub-dev-001
-         server_name: apexdatahubdev
-         name: firewallrulecrud-5380
-         start_ip_address: 0.0.0.0
-         end_ip_address: 0.0.0.0
+         resource_group: 
+         server_name: datahubdev
+         name: 
+         start_ip_address: IPADDR
+         end_ip_address: IPADDR
      - name: "Development SQL Database"
        azure_rm_sqldatabase:
-         subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-         resource_group: rg-apexdatahub-dev-001
-         location: eastus2
+         subscription_id: 
+         resource_group: 
+         location: 
          name: reservoir-dev
-         server_name: apexdatahubdev
+         server_name: datahubdev
          force_update: yes
          state: present
          zone_redundant: no
          tags:
-            Env: Prod
+            Env: 
 
 
 - name: "Create Storage Accounts"
@@ -95,39 +95,39 @@
   tasks:
      - name: "Primary Storage Account"
        azure_rm_storageaccount:
-         subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-         resource_group: rg-apexdatahub-prod-001
-         name: apexdatahubsa
-         location: eastus2
+         subscription_id: 
+         resource_group: 
+         name: datahubsa
+         location: 
          kind: StorageV2
          account_type: Standard_RAGRS
          access_tier: Hot
          state: present
          tags:
-            Env: Prod
+            Env: 
      - name: "Container:eventhub"
        azure_rm_storageblob:
-         subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-         resource_group: rg-apexdatahub-prod-001
-         storage_account_name: apexdatahubsa
+         subscription_id: 
+         resource_group: 
+         storage_account_name: datahubsa
          container: eventhub
          blob_type: block
          force: no
          state: present
      - name: "Container:event-grid-dead-letters"
        azure_rm_storageblob:
-         subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-         resource_group: rg-apexdatahub-prod-001
-         storage_account_name: apexdatahubsa
+         subscription_id: 
+         resource_group: 
+         storage_account_name: datahubsa
          container: event-grid-dead-letters
          blob_type: block
          force: no
          state: present
      - name: "Container:reservoir-backups"
        azure_rm_storageblob:
-         subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-         resource_group: rg-apexdatahub-prod-001
-         storage_account_name: apexdatahubsa
+         subscription_id: 
+         resource_group: 
+         storage_account_name: datahubsa
          container: eventhub
          blob_type: block
          force: no
@@ -135,10 +135,10 @@
 
      - name: "Secondary Storage Account"
        azure_rm_storageaccount:
-         subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-         resource_group: ApexDH-Comp1
-         name: apexdatahubsitedata
-         location: eastus
+         subscription_id: 
+         resource_group: 
+         name: datahubsitedata
+         location: 
          kind: StorageV2
          account_type: Standard_RAGRS
          access_tier: Hot
@@ -148,10 +148,10 @@
   hosts: localhost
   connection: local
   vars:
-    resource_group: rg-apexdatahub-prod-001
-    location: eastus2
-    namespacename: apexdatahub1
-    eventhubname: evh-apexdatahub-ignition-prod
+    resource_group: 
+    location: 
+    namespacename: datahub1
+    eventhubname: evh-datahub-ignition-prod
   tasks:
     - name: "EventHub Namespace"
       azure_rm_resource:
@@ -201,25 +201,25 @@
   tasks:
     - name: "AppService"
       azure_rm_appserviceplan:
-        subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-        resource_group: rg-apexdatahub-prod-001
-        name: EastUSLinuxDynamicPlann
-        location: eastus2
+        subscription_id: 
+        resource_group: 
+        name: LinuxDynamicPlann
+        location: 
         is_linux: yes
         sku: Y1
         number_of_workers: 1
         state: present
     - name: "Function App"
       azure_rm_functionapp:
-        subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-        resource_group: rg-apexdatahub-prod-001
-        name: apexdatahub-harnesss
-        location: eastus2
-        storage_account: apexdatahubsa
-        plan: EastUSLinuxDynamicPlann
+        subscription_id: 
+        resource_group: 
+        name: datahub-harnesss
+        location: 
+        storage_account: datahubsa
+        plan: LinuxDynamicPlan
         state: present
         tags:
-            Env : Prod
+            Env : 
 
 - name: "Deployment of Log Analytics Workspace"
   connection: local
@@ -227,17 +227,17 @@
   tasks:
     - name: "Log Analytics Workspace"
       azure_rm_loganalyticsworkspace:
-        subscription_id: bdf11317-e2e0-4426-8d2e-3b8a1d3feb5a
-        resource_group: rg-apexdatahub-prod-001
-        location: eastus2
-        name: log-apexdatahubb-prod
+        subscription_id: 
+        resource_group: rg-datahub-prod
+        location: 
+        name: log-datahubb-prod
         sku: standard
         state: present
         retention_in_days: 30
         intelligence_packs:
           Backup: true
         tags:
-            Env : Prod
+            Env : 
 
 #SERVICES FOR FUTURE USE.
 
@@ -245,11 +245,11 @@
   hosts: localhost
   connection: local
   vars:
-    resource_group_webapp: rg-apexdatahub-dev-001
-    resource_group: rg-apexdatahub-prod-001
-    webapp_name: apexdhwbap
-    plan_name: apexdhservpln
-    location: eastus2
+    resource_group_webapp: rg-datahub-dev
+    resource_group: 
+    webapp_name: dhwbap
+    plan_name: dhservpln
+    location: 
     traffic_manager_profile_name: ApexDHTrafficManagerProfile
     traffic_manager_endpoint_name: ApexDHTrafficManagerEndpoint
   tasks:
@@ -311,17 +311,17 @@
   - name: "Resource Group"
     azure_rm_resourcegroup:
       name: ResourceGroup
-      location: eastus
+      location: 
   - name: "Virtual Network"
     azure_rm_virtualnetwork:
       resource_group: ResourceGroup
       name: Vnet
-      address_prefixes: "10.0.0.0/16"
+      address_prefixes: "IPADDR"
   - name: "Subnet"
     azure_rm_subnet:
       resource_group: ResourceGroup
       name: Subnet
-      address_prefix: "10.0.1.0/24"
+      address_prefix: "IPADDR"
       virtual_network: Vnet
   - name: "Public IP Address"
     azure_rm_publicipaddress:
@@ -337,11 +337,11 @@
       resource_group: ResourceGroup
       name: NetworkSecurityGroup
       rules:
-        - name: SSH
-          protocol: Tcp
-          destination_port_range: 22
+        - name: 
+          protocol: 
+          destination_port_range: 
           access: Allow
-          priority: 1001
+          priority: 
           direction: Inbound
   - name: "Virtual network interface card"
     azure_rm_networkinterface:
@@ -357,7 +357,7 @@
       name: VM
       vm_size: Standard_DS1_v2
       admin_username: azureuser
-      admin_password: Apex123
+      admin_password: 
       network_interfaces: NIC
       image:
         offer: CentOS
