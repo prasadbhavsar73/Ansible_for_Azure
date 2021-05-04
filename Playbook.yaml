@@ -250,8 +250,8 @@
     webapp_name: dhwbap
     plan_name: dhservpln
     location: 
-    traffic_manager_profile_name: ApexDHTrafficManagerProfile
-    traffic_manager_endpoint_name: ApexDHTrafficManagerEndpoint
+    traffic_manager_profile_name: TrafficManagerProfile
+    traffic_manager_endpoint_name: DHTrafficManagerEndpoint
   tasks:
   - name: "App Service Plan"
     azure_rm_appserviceplan:
@@ -356,7 +356,7 @@
       resource_group: ResourceGroup
       name: VM
       vm_size: Standard_DS1_v2
-      admin_username: azureuser
+      admin_username: 
       admin_password: 
       network_interfaces: NIC
       image:
